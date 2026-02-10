@@ -3,35 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unspoken Echoes | Anonymous Notes</title>
+    <title>Unspoken Echoes</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Unspoken Echoes</h1>
-            <p>Write a message you never got to say.</p>
-        </header>
 
-        <section class="input-section">
+    <section id="landing-page" class="page">
+        <div class="hero">
+            <h1>Unspoken Echoes</h1>
+            <p>Words left unsaid, now whispered to the void.</p>
+            <div class="hero-btns">
+                <button onclick="showPage('feed-page')">Read Echoes</button>
+                <button class="secondary" onclick="showPage('create-page')">Write a Note</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="create-page" class="page hidden">
+        <nav>
+            <button class="back-btn" onclick="showPage('landing-page')">← Back</button>
+        </nav>
+        <div class="form-container">
+            <h2>Write your echo</h2>
             <form id="messageForm">
                 <input type="text" id="receiver" placeholder="To: (Name or Initial)" required>
-                <textarea id="message" placeholder="Type your unspoken words..." required maxlength="250"></textarea>
-                <button type="submit" id="submitBtn">Post to the Void</button>
+                <textarea id="message" placeholder="What did you want to say?" required maxlength="250"></textarea>
+                <button type="submit" id="submitBtn">Send to the Void</button>
             </form>
-        </section>
+        </div>
+    </section>
 
-        <div class="search-box">
+    <section id="feed-page" class="page hidden">
+        <nav>
+            <button class="back-btn" onclick="showPage('landing-page')">← Home</button>
+            <button class="write-float" onclick="showPage('create-page')">Write +</button>
+        </nav>
+        <div class="search-container">
             <input type="text" id="searchInput" placeholder="Search for a name...">
         </div>
-
-        <section class="feed-section">
-            <div id="messageFeed">
-                <p class="loading">Loading echoes...</p>
-            </div>
-        </section>
-    </div>
+        <div id="messageFeed">
+            <p class="loading">Loading echoes...</p>
+        </div>
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
