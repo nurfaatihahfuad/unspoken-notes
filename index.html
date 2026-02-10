@@ -3,38 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unspoken Notes | Anonymous Board</title>
+    <title>Unspoken Echoes | Anonymous Notes</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Unspoken Notes</h1>
+            <h1>Unspoken Echoes</h1>
             <p>Write a message you never got to say.</p>
         </header>
 
         <section class="input-section">
             <form id="messageForm">
                 <input type="text" id="receiver" placeholder="To: (Name or Initial)" required>
-                <textarea id="message" placeholder="Type your message..." required></textarea>
-                <button type="submit">Post Anonymously</button>
+                <textarea id="message" placeholder="Type your unspoken words..." required maxlength="250"></textarea>
+                <button type="submit" id="submitBtn">Post to the Void</button>
             </form>
         </section>
 
-        <hr>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search for a name...">
+        </div>
 
         <section class="feed-section">
-            <h2>Recent Notes</h2>
             <div id="messageFeed">
-                <div class="note">
-                    <p class="to">To: Someone</p>
-                    <p class="text">"This is an example message. Your real messages will show here."</p>
-                    <span class="date">Feb 10, 2026</span>
-                </div>
+                <p class="loading">Loading echoes...</p>
             </div>
         </section>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
 </html>
