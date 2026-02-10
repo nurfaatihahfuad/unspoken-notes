@@ -1,37 +1,211 @@
-/* Sembunyikan page secara default */
-.hidden { display: none !important; }
+/* 1. RESET & BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+:root {
+    --bg-color: #f8f5f0;
+    --text-color: #2d2d2d;
+    --accent-color: #1a1a1a;
+    --note-yellow: #fff9c4;
+    --note-blue: #e3f2fd;
+    --note-pink: #fce4ec;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 2. PAGE TRANSITIONS */
 .page {
     min-height: 100vh;
-    padding: 20px;
-    animation: fadeIn 0.5s ease;
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    transition: opacity 0.4s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.hidden {
+    display: none !important;
 }
 
-/* Hero Section Styles */
-.hero {
+/* 3. LANDING PAGE (HERO) */
+#landing-page {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 80vh;
 }
 
-.hero h1 { font-size: 4rem; font-family: 'Indie Flower'; }
+.hero h1 {
+    font-family: 'Indie Flower', cursive;
+    font-size: clamp(3.5rem, 10vw, 5.5rem);
+    margin-bottom: 10px;
+    letter-spacing: -2px;
+}
 
-.hero-btns { display: flex; gap: 15px; margin-top: 20px; }
-
-/* Nav Styles */
-nav {
-    display: flex;
-    justify-content: space-between;
+.hero p {
+    font-size: 1.2rem;
+    color: #666;
     margin-bottom: 30px;
 }
 
-.back-btn { background: none; color: #333; border: 1px solid #333; padding: 5px 15px; }
-.secondary { background: #fff; color: #333; border: 2px solid #333; }
+.hero-btns {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* 4. BUTTONS */
+button {
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+button:not(.secondary) {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+button.secondary {
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+button:active { transform: translateY(0); }
+
+/* 5. FORM STYLES (CREATE PAGE) */
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.form-container h2 {
+    margin-bottom: 25px;
+    font-family: 'Indie Flower', cursive;
+    font-size: 2rem;
+}
+
+form { display: flex; flex-direction: column; gap: 15px; }
+
+input, textarea {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    background: #fafafa;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+textarea { height: 150px; resize: none; }
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #ccc;
+    background: #fff;
+}
+
+/* 6. FEED & STICKY NOTES */
+#messageFeed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.note {
+    padding: 30px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+/* Warna Rawak & Senget */
+.note:nth-child(4n+1) { background: var(--note-yellow); transform: rotate(-1.5deg); }
+.note:nth-child(4n+2) { background: var(--note-blue); transform: rotate(1.2deg); }
+.note:nth-child(4n+3) { background: var(--note-pink); transform: rotate(-1deg); }
+.note:nth-child(4n+4) { background: #e8f5e9; transform: rotate(1.8deg); }
+
+.note:hover {
+    transform: scale(1.05) rotate(0deg) !important;
+    z-index: 10;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.to {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 5px;
+}
+
+.text {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.4rem;
+    color: #333;
+    flex-grow: 1;
+}
+
+.date {
+    font-size: 0.7rem;
+    color: #888;
+    text-align: right;
+    margin-top: 15px;
+}
+
+/* 7. NAVIGATION ELEMENTS */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.back-btn {
+    background: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    border: 1px solid #ddd;
+}
+
+.search-container input {
+    width: 100%;
+    border-radius: 50px;
+    padding: 12px 25px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .hero h1 { font-size: 3rem; }
+    .hero-btns { flex-direction: column; width: 100%; }
+    .note { min-height: 200px; }
+}
