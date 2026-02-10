@@ -1,6 +1,6 @@
 // INITIALIZE SUPABASE
-const SUPABASE_URL = 'https://YOUR_PROJECT_ID.supabase.co';
-const SUPABASE_KEY = 'YOUR_ANON_PUBLIC_KEY';
+const SUPABASE_URL = 'https://yzmkqyrkkzobmpufdaae.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl6bWtxeXJra3pvYm1wdWZkYWFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2OTQ0MDEsImV4cCI6MjA4NjI3MDQwMX0.BipsJiV7gr4nF39xmA8etbv0yrQ0hUvinjB_oE5vS2Q';
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const messageForm = document.getElementById('messageForm');
