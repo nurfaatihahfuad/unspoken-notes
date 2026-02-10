@@ -1,7 +1,9 @@
 // INITIALIZE SUPABASE
 const SUPABASE_URL = 'https://yzmkqyrkkzobmpufdaae.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl6bWtxeXJra3pvYm1wdWZkYWFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2OTQ0MDEsImV4cCI6MjA4NjI3MDQwMX0.BipsJiV7gr4nF39xmA8etbv0yrQ0hUvinjB_oE5vS2Q';
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// Guna 'supabaseClient' supaya tidak keliru dengan library 'supabase'
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const messageForm = document.getElementById('messageForm');
 const messageFeed = document.getElementById('messageFeed');
@@ -9,7 +11,7 @@ const searchInput = document.getElementById('searchInput');
 
 // 1. FETCH MESSAGES
 async function fetchMessages(searchTerm = '') {
-    let query = supabase
+    let query = supabaseClient
         .from('notes')
         .select('*')
         .order('created_at', { ascending: false });
@@ -24,12 +26,12 @@ async function fetchMessages(searchTerm = '') {
         console.error('Error fetching:', error);
         return;
     }
-    renderMessages(data);
+    renderMessages(data || []);
 }
 
 // 2. RENDER MESSAGES TO HTML
 function renderMessages(notes) {
-    if (notes.length === 0) {
+    if (!notes || notes.length === 0) {
         messageFeed.innerHTML = '<p class="loading">No echoes found...</p>';
         return;
     }
@@ -54,16 +56,18 @@ messageForm.addEventListener('submit', async (e) => {
     submitBtn.disabled = true;
     submitBtn.innerText = 'Sending...';
 
-    const { error } = await supabase
+    // Gunakan supabaseClient di sini juga
+    const { error } = await supabaseClient
         .from('notes')
         .insert([{ receiver, message }]);
 
     if (error) {
-        alert('Error sending message!');
+        alert('Error sending message: ' + error.message);
         console.error(error);
     } else {
         messageForm.reset();
         fetchMessages();
+        alert('Message posted successfully!');
     }
     
     submitBtn.disabled = false;
@@ -71,9 +75,11 @@ messageForm.addEventListener('submit', async (e) => {
 });
 
 // 4. SEARCH FILTER
-searchInput.addEventListener('input', (e) => {
-    fetchMessages(e.target.value);
-});
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        fetchMessages(e.target.value);
+    });
+}
 
 // Initial Load
 fetchMessages();
