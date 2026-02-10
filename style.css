@@ -33,13 +33,20 @@ body {
 button {
     background: #fff;
     color: #000;
-    border: 2px solid #000;
-    padding: 8px 16px;
+    border: 3px solid #000;
+    padding: 8px 15px;
     font-size: 1.5rem;
+    font-family: 'VT323', monospace;
     cursor: pointer;
     box-shadow: 4px 4px 0px #000;
-    margin: 5px;
     text-transform: uppercase;
+    position: relative;
+}
+
+button:active {
+    /* Bila tekan, butang nampak masuk ke dalam skrin */
+    box-shadow: none;
+    transform: translate(4px, 4px);
 }
 
 button:hover {
@@ -47,10 +54,6 @@ button:hover {
     color: #fff;
     box-shadow: none;
     transform: translate(2px, 2px);
-}
-
-button:active {
-    background: #555;
 }
 
 /* 5. FORM & INPUTS */
@@ -69,9 +72,11 @@ input, textarea {
     background: #fff;
 }
 
-textarea {
-    height: 150px;
-    border-style: dashed; /* Kesan lukisan tangan */
+textarea, input {
+    border: 3px solid #000;
+    border-style: double; /* Garisan berkembar ala OS lama */
+    background-color: #fff;
+    font-size: 1.4rem;
 }
 
 /* 6. FEED & NOTES (Gaya Kad Retro) */
@@ -82,10 +87,13 @@ textarea {
 }
 
 .note {
-    border: 2px solid #000;
-    padding: 15px;
     background: #fff;
+    border: 4px solid #000;
+    padding: 20px;
+    margin-bottom: 25px;
     position: relative;
+    /* Membuat kesan border bintik-bintik di belakang kad */
+    box-shadow: 8px 8px 0px rgba(0,0,0,1);
 }
 
 .note::after {
@@ -114,11 +122,13 @@ textarea {
 
 /* 8. HEADER & TEXT */
 h1 {
-    font-size: 4rem;
-    text-align: center;
-    background: #000;
+    background-color: #000;
+    background-image: radial-gradient(#555 1px, transparent 0px);
+    background-size: 3px 3px; /* Kesan tekstur kelabu bintik */
     color: #fff;
-    padding: 10px;
+    padding: 15px;
+    border-bottom: 5px solid #000;
+    text-shadow: 3px 3px 0px #555;
 }
 
 p {
