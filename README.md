@@ -29,4 +29,4 @@
 
 ## 🧩 You can access here !!
 
-- **Unspoken notes: ** [here](https://nurfaatihahfuad.github.io/unspoken-notes/)
+- **Unspoken notes:** [here](https://nurfaatihahfuad.github.io/unspoken-notes/)
