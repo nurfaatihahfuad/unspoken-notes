@@ -31,13 +31,15 @@ async function fetchMessages(searchTerm = '') {
 
 function renderMessages(notes) {
     if (!notes || notes.length === 0) {
-        messageFeed.innerHTML = '<p>No echoes found.</p>';
+        messageFeed.innerHTML = '<p class="loading">NO ECHOES IN THE VOID...</p>';
         return;
     }
+
     messageFeed.innerHTML = notes.map(note => `
         <div class="note">
-            <p class="to">To: ${note.receiver}</p>
+            <div class="ink-splat"></div> <p class="to">TO: ${note.receiver}</p>
             <p class="text">${note.message}</p>
+            <span class="date">${new Date(note.created_at).toLocaleDateString()}</span>
         </div>
     `).join('');
 }
