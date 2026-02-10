@@ -3,49 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unspoken Echoes</title>
+    <title>Unspoken Echoes | Anonymous Notes</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <section id="landing-page" class="page">
-        <div class="hero">
-            <h1>Unspoken Echoes</h1>
-            <p>Words left unsaid, now whispered to the void.</p>
-            <div class="hero-btns">
-                <button onclick="showPage('feed-page')">Read Echoes</button>
-                <button class="secondary" onclick="showPage('create-page')">Write a Note</button>
+    <div class="container">
+        <section id="landing-page" class="page">
+            <div class="hero">
+                <h1>Unspoken Echoes</h1>
+                <p>Words left unsaid, now whispered to the void.</p>
+                <div class="hero-btns">
+                    <button onclick="showPage('feed-page')">Read Echoes</button>
+                    <button class="secondary" onclick="showPage('create-page')">Write a Note</button>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="create-page" class="page hidden">
-        <nav>
-            <button class="back-btn" onclick="showPage('landing-page')">← Back</button>
-        </nav>
-        <div class="form-container">
-            <h2>Write your echo</h2>
-            <form id="messageForm">
-                <input type="text" id="receiver" placeholder="To: (Name or Initial)" required>
-                <textarea id="message" placeholder="What did you want to say?" required maxlength="250"></textarea>
-                <button type="submit" id="submitBtn">Send to the Void</button>
-            </form>
-        </div>
-    </section>
+        <section id="create-page" class="page hidden">
+            <nav>
+                <button class="back-btn" onclick="showPage('landing-page')">← Back</button>
+            </nav>
+            <div class="form-container">
+                <h2>Write your echo</h2>
+                <form id="messageForm">
+                    <div class="input-group">
+                        <label for="receiver">To:</label>
+                        <input type="text" id="receiver" placeholder="(Name or Initial)" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="message">Your Message:</label>
+                        <textarea id="message" placeholder="What did you want to say?" required maxlength="250"></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn">Send to the Void</button>
+                </form>
+            </div>
+        </section>
 
-    <section id="feed-page" class="page hidden">
-        <nav>
-            <button class="back-btn" onclick="showPage('landing-page')">← Home</button>
-            <button class="write-float" onclick="showPage('create-page')">Write +</button>
-        </nav>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search for a name...">
-        </div>
-        <div id="messageFeed">
-            <p class="loading">Loading echoes...</p>
-        </div>
-    </section>
+        <section id="feed-page" class="page hidden">
+            <nav>
+                <button class="back-btn" onclick="showPage('landing-page')">← Home</button>
+                <button class="write-btn-small" onclick="showPage('create-page')">Write +</button>
+            </nav>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a name...">
+            </div>
+
+            <div id="messageFeed">
+                <p class="loading">Loading echoes...</p>
+            </div>
+        </section>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
