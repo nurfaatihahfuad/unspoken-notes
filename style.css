@@ -92,16 +92,46 @@ textarea, input {
     padding: 20px;
     margin-bottom: 25px;
     position: relative;
-    /* Membuat kesan border bintik-bintik di belakang kad */
-    box-shadow: 8px 8px 0px rgba(0,0,0,1);
+    box-shadow: 8px 8px 0px #000;
+    overflow: hidden; /* Supaya splatter tak terkeluar */
+}
+
+.note::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Guna radial gradient untuk buat bintik-bintik rawak */
+    background-image: 
+        radial-gradient(#000 1px, transparent 0),
+        radial-gradient(#000 1.5px, transparent 0);
+    background-size: 15px 15px, 30px 30px;
+    background-position: 0 0, 8px 8px;
+    opacity: 0.1; /* Biar nampak halus, tak kacau tulisan */
+    pointer-events: none;
+}
+
+/* Kad yang ganjil dapat bintik lebih pekat sikit */
+.note:nth-child(odd)::before {
+    opacity: 0.15;
+    background-size: 10px 10px, 20px 20px;
 }
 
 .note::after {
-    content: '';
+    content: "";
     position: absolute;
-    top: 5px; left: 5px; right: -5px; bottom: -5px;
-    border: 2px solid #000;
-    z-index: -1;
+    bottom: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    background: #000;
+    /* Bentuk tompokan yang tak sekata */
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+    opacity: 0.8;
+    filter: blur(1px); /* Bagi nampak macam dakwat meresap */
+    transform: rotate(15deg);
 }
 
 .note .to {
