@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unspoken Notes | Anonymous Board</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Unspoken Notes</h1>
+            <p>Write a message you never got to say.</p>
+        </header>
+
+        <section class="input-section">
+            <form id="messageForm">
+                <input type="text" id="receiver" placeholder="To: (Name or Initial)" required>
+                <textarea id="message" placeholder="Type your message..." required></textarea>
+                <button type="submit">Post Anonymously</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section class="feed-section">
+            <h2>Recent Notes</h2>
+            <div id="messageFeed">
+                <div class="note">
+                    <p class="to">To: Someone</p>
+                    <p class="text">"This is an example message. Your real messages will show here."</p>
+                    <span class="date">Feb 10, 2026</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
